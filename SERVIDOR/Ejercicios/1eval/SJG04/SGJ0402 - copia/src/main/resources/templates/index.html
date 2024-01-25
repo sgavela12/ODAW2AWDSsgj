@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <span th:text="${respuesta}"></span>
+    <ul th:each="numero:${numeros}">
+      <li th:text="${numero}"></li>
+    </ul>
+    <ul th:each="divisor:${divisores}">
+        <li><a th:href="@{/calculos/divisores/{x}(x=${divisor})}" th:text ="${divisor}"></a></li>
+      </ul>
+  </body>
+</html>

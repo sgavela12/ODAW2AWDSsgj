@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Numeros Aleatorios</h1>
+    <table border="1px">
+        <tr>
+            <th>Numero</th><th>Operacion</th>
+        </tr>
+        <tr th:each="numero:${listaNumeros}">
+            <td th:text="${numero}">no va</td>
+            <td><a th:href="@{/delete/{id}(id=${numero})}">borrar</a></td>
+        </tr>
+    </table>
+    Total números: <span th:text="${cantidadTotal}"></span>
+    <a href="/new">Nuevo numero</a><br>
+</body>
+
+</html>
