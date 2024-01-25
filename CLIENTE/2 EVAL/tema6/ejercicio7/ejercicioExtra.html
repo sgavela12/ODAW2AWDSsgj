@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="ejercicioExtra.js" type="module" defer></script>
+    <style>
+        table{
+            border: solid 2px;
+        }
+        td, th{
+            border: solid 2px;
+            width: 70px;
+        }
+    </style>
+</head>
+<body>
+    <form id="miFormulario">
+        <h3>Crear edificio</h3>
+        <input type="text" id="calle"  placeholder="Calle"><br>
+        <input type="number" id="numero"  placeholder="Numero"><br>
+        <input type="number" id="codigoPostal"  placeholder="Codigo Postal"><br>
+        <input type="number" id="plantas"  placeholder="Plantas"><br>
+        <input type="number" id="puertas"  placeholder="Puertas"><br>
+        <input type="button" value="Crear" id="crear">
+    </form>
+
+  
+
+
+    <form action="" id="miFormulario3" hidden>
+        <h3>Mostrar Edificio</h3>
+        <select name="edificio" id="edificio">
+            <option value="hola"></option>
+        </select><br>
+    </form>
+    <div id="espacioTabla"></div>
+
+    
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE htm>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3</title>
+    <style type="text/css">
+    body {font-family: arial, helvetica;}
+    form {
+        width: 600px;
+        margin: 20px auto 0 auto;
+    }
+    label {
+        float: left;
+        width: 200px;
+        font-weight: bold;
+    }
+    label[for="registro_condiciones"] {
+        float: none;
+    }
+    input[type="text"],
+    input[type="password"],
+    textarea {
+        width: 360px;
+    }
+    input[type="checkbox"] {
+        margin-left: 200px;
+    }
+    input[type="submit"] {
+        margin: 20px 0 0 200px;
+        display: block;
+    }
+    #mensaje{
+        color: red;
+    }
+    .error{
+        border: solid 4px #FF0000;
+
+        
+    }
+    </style>
+    <script src="ej3.js" type="module" defer></script>
+</head>
+
+<body>
+    <form id="registro">
+        <fieldset>
+            <legend>Registro de Personas</legend>
+            <label for="registro_nombre">Nombre:</label><input type="text" name="nombre" id="registro_nombre">
+            <label for="registro_apellidos">Apellido:</label><input type="text" name="apellido" id="registro_apellidos">
+            <label for="registro_email">Email:</label><input type="text" name="email" id="registro_email">
+            <label for="registro_password">Password:</label><input type="password" name="password" id="registro_password">
+            <input type="checkbox" name="condiciones" id="registro_condiciones" value="1"><label for="registro_condiciones">Acepto las condiciones del servicio.</label>
+            <p id="mensaje"></p>
+            <input type="button" value="Enviar" id="enviar"></input>
+            <input type="button" value="Buscar" id="buscar"></input>
+        </fieldset>
+        <p id="resultadoBusqueda"></p>
+    </form>
+</body>
+</html>

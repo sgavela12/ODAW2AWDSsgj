@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="module" src="ejercicio10.js"></script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <form>
+        <h2>Accede a tu Área Clientes</h2>
+        <h3>Elige tu documento</h3>
+        <input type="radio" name="documento" value="dni" id="dni" required>
+        <label >DNI o tarjeta de residencia</label>
+        <input type="radio" name="documento" value="pasaporte" id="pasaporte">
+        <label >Pasaporte</label><br>
+        <label >Número de documento</label><br>
+        <input type="text" required name="numero" id="numero">
+        <label >Fecha de nacimiento</label><br>
+        <input type="text" required placeholder="DD" id="dia">
+        <input type="text" required placeholder="MM" id="mes">
+        <input type="text" required placeholder="AAAA" id="anio"><br>
+        <input type="checkbox" name="recordar" id="recordar">
+        <label >Recordar</label><br>
+        <input type="button" id="entrar" value="Entrar">
+        
+    </form>
+  </body>
+</html>

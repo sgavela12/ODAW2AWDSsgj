@@ -1,0 +1,12 @@
+{
+    "clientes": [
+      {"Nombre": "Laura", "Localidad": "Santander", "Cuota": 50},
+      {"Nombre": "Álvaro", "Localidad": "Castro", "Cuota": 50},
+      {"Nombre": "Igor", "Localidad": "Castro", "Cuota": 60},
+      {"Nombre": "Ivan", "Localidad": "Santander", "Cuota": 40},
+      {"Nombre": "Mónica", "Localidad": "Zamora", "Cuota": 30},
+      {"Nombre": "Javi", "Localidad": "Bilbao", "Cuota": 30},
+      {"Nombre": "David", "Localidad": "Bilbao", "Cuota": 50}
+    ]
+  }
+  

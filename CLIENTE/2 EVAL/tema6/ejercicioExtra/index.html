@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tablero de Dibujo</title>
+    <link rel="stylesheet" href="estilos.css">
+    <script defer src="dibujar.js"></script>
+</head>
+<body>
+    <p>TABLERO DE DIBUJO EN JAVASCRIPT</p>
+    <table width="500" border="1" id="paleta" summary="Tabla de selección de colores">
+        <caption>Haga clic en un color para comenzar a pintar</caption>
+        <tr>
+            <td class="color1 seleccionado"></td>
+            <td class="color2"></td>
+            <td class="color3"></td>
+            <td class="color4"></td>
+            <td class="color5"></td>
+            <td class="color6"></td>
+        </tr>
+        <tr>
+            <td colspan="6" id="pincel">Estado del pincel</td>
+        </tr>
+    </table>
+    <p></p>
+    <div id="zonadibujo"></div>
+</body>
+</html>

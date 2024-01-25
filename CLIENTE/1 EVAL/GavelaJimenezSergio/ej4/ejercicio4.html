@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tragaperras</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        div {
+            text-align: center;
+        }
+
+        .fruta {
+            width: 200px;
+            height: 200px;
+            background-size: cover;
+            display: inline-block;
+            margin: 10px;
+        }
+    </style>
+    <script src="ejercicio4.js" defer></script>
+</head>
+
+<body>
+    <div>
+        <h1>Tragaperras</h1>
+        <button id="boton1"><img class="fruta" id="1" src="img/dolar.webp"></button>
+        <button id="boton2"><img class="fruta" id="2" src="img/dolar.webp"></button>
+        <button id="boton3"><img class="fruta" id="3" src="img/dolar.webp"></button>
+
+        <p id="score">Victorias: <span id="winCount">0 </span>Ganancias: <span id="ganancias">0</span></p>
+        <button id="calcula">Ganancias</button>
+    </div>
+</body>
+
+</html>

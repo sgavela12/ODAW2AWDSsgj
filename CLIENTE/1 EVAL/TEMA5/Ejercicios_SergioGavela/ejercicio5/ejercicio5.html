@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="ejercicio5.js" defer ></script>
+    <style>
+        .error{
+            background-color: red;
+        }
+
+    </style>
+</head>
+<body>
+    <form action="">
+        <h2>Nuevo Disco</h2>
+        <input type="text" id="nombre" placeholder="Nombre del Disco"><br>
+        <input type="text" id="grupo" placeholder="Grupo"><div style="color: red;" id="msgErrorNombre"></div><br>
+        <input type="number" id="anio" placeholder="Año de publicacion"><div style="color: red;" id="msgErrorAnio"></div><br>
+        <select name="tipo" id="tipo">
+            <option value="rock">Rock</option>
+            <option value="pop">Pop</option>
+            <option value="punk">Punk</option>
+            <option value="indie">Indie</option>
+        </select><br>
+        <input type="text" id="localizacion" placeholder="Localizacion"><br>
+    </form>
+    <button id="enviar">Enviar</button>
+    
+    
+</body>

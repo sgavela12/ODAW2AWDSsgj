@@ -1,0 +1,1 @@
+setTimeout(function(){document.write(new Date().getFullYear())},2000);

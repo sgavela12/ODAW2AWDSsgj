@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generador de Párrafos</title>
+    <script src="ejercicio5.js"></script>
+  </head>
+  <body>
+    <h1>Generador de Párrafos</h1>
+
+    <label for="texto">Texto:</label>
+    <textarea id="texto" rows="4" cols="50"></textarea>
+
+    <label for="colores">Selecciona un color de fondo:</label>
+    <select id="colores">
+      <option value="white">Blanco</option>
+      <option value="lightblue">Azul Claro</option>
+      <option value="lightgreen">Verde Claro</option>
+      <option value="lightpink">Rosa Claro</option>
+    </select>
+
+    <button onclick="crearParrafo()">Crear párrafo</button>
+
+    <div id="resultado"></div>
+  </body>
+</html>
