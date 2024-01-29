@@ -1,7 +1,6 @@
 import { Disco } from "./Disco.js";
 
-let discos = [new Disco("bdisco1", "grupo", "1998", "rock", "caratula"),new Disco("cdisco2", "grupo", "1998", "rock", "caratula"),new Disco("adisco3", "grupo", "1998", "rock", "caratula")]
-let discosXml
+let discos = []
 let numeroDiscos = document.getElementById("numeroDiscos")
 let ordenNormalButton = document.getElementById("ordenNormal")
 let ordenInversoButton = document.getElementById("ordenInverso")
@@ -95,14 +94,13 @@ function actulizaNumeroDiscos(){
 }
 
 
-document.getElementById("xml").addEventListener("click", cargarCatalogo);
+document.addEventListener("DOMContentLoaded",cargarCatalogo)
 
         function cargarCatalogo() {
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
-                    console.log(this.response)
-                    cargarXML(this.responseXML);
+                    cargarXML(this);
                     
                     // mostrarTabla(arrayDiscos)
                 }
@@ -113,14 +111,12 @@ document.getElementById("xml").addEventListener("click", cargarCatalogo);
 
         function cargarXML(xml) {
             var docXML = xml.responseXML;
-            var tabla = "<tr><th>Artista</th><th>Titulo</th></tr>";
-            var discos = docXML.getElementsByTagName("");
+            var discos = docXML.getElementsByTagName("disco");
             for (var i = 0; i < discos.length; i++) {
-                tabla += "<tr><td>";
-                tabla += discos[i].getElementsByTagName("disco")[0].textContent;
-                tabla += "</td><td>";
-                tabla += discos[i].getElementsByTagName("TITLE")[0].textContent;
-                tabla += "</td></tr>";
+                // discos.push(new Disco(discos[i].getElementsByTagName("disco")[0].textContent,discos[i].getElementsByTagName("grupo")[0].textContent,discos[i].getElementsByTagName("anio")[0].textContent,discos[i].getElementsByTagName("tipo")[0].textContent,discos[i].getElementsByTagName("caratula")[0].textContent,discos[i].getElementsByTagName("localizacion")[0].textContent,discos[i].getElementsByTagName("prestado")[0].textContent))
+                let prueba = discos[i]
+                console.log(prueba.getElementsByTagName("id").textContent)
+      
             }
             document.getElementById("espacioTabla").innerHTML = tabla;
         }
