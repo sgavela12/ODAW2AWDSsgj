@@ -1,12 +1,23 @@
 export  class Cliente {
+    static clientes = [
+        "Nombre;Localidad;Cuota",
+        "Laura;Santander;50",
+        "Álvaro;Castro;50",
+        "Igor;Castro;60",
+        "Ivan;Santander;40",
+        "Mónica;Zamora;30",
+        "Javi;Bilbao;30",
+        "David;Bilbao;50",
+    ];
 
+    static clientesXML
 
 
     static tabla = document.getElementById("tabla");
     static clientesSerparados=[]
 
-    static creaTabla(clientes) {
-        clientes.forEach((cliente) => {
+    static creaTabla() {
+        Cliente.clientesXML.forEach((cliente) => {
             let nuevoTr = document.createElement("tr");
             let datos = cliente.split(";");
 
@@ -20,7 +31,7 @@ export  class Cliente {
     }
 
     static separaArray(){
-        Cliente.clientes.forEach((cliente) => {
+        Cliente.clientesXML.forEach((cliente) => {
             let datos = cliente.split(";");
             Cliente.clientesSerparados.push(datos)
        })
@@ -66,15 +77,7 @@ export  class Cliente {
             respuesta.innerHTML = mensaje
     }
 }
-static convertirClientes(inputClientes) {
-    let resultado = ["Nombre;Localidad;Cuota"]; // Inicializar con el encabezado
 
-    for (const cliente of inputClientes.clientes) {
-      const { Nombre, Localidad, Cuota } = cliente;
-      const clienteString = `${Nombre};${Localidad};${Cuota}`;
-      resultado.push(clienteString);
-    }
 
-    return resultado;
-  }
 }
+
