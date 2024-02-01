@@ -94,32 +94,29 @@ function actulizaNumeroDiscos(){
 }
 
 
-document.addEventListener("DOMContentLoaded",cargarCatalogo)
+// Crear una instancia de XMLHttpRequest
+var xmlhttp = new XMLHttpRequest();
 
-        function cargarCatalogo() {
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    cargarXML(this);
-                    
-                    // mostrarTabla(arrayDiscos)
-                }
-            };
-            xhr.open("GET", "discos.xml", true);
-            xhr.send();
-        }
+// Especificar el método HTTP y la URL de la API
+var url = "https://randomuser.me/api/?results=6&format=XML";
+xmlhttp.open("GET", url, true);
 
-        function cargarXML(xml) {
-            var docXML = xml.responseXML;
-            var discos = docXML.getElementsByTagName("disco");
-            for (var i = 0; i < discos.length; i++) {
-                // discos.push(new Disco(discos[i].getElementsByTagName("disco")[0].textContent,discos[i].getElementsByTagName("grupo")[0].textContent,discos[i].getElementsByTagName("anio")[0].textContent,discos[i].getElementsByTagName("tipo")[0].textContent,discos[i].getElementsByTagName("caratula")[0].textContent,discos[i].getElementsByTagName("localizacion")[0].textContent,discos[i].getElementsByTagName("prestado")[0].textContent))
-                let prueba = discos[i]
-                console.log(prueba.getElementsByTagName("id").textContent)
-      
-            }
-            document.getElementById("espacioTabla").innerHTML = tabla;
-        }
+// Configurar el tipo de respuesta esperada (en este caso, XML)
+xmlhttp.setRequestHeader("Accept", "application/xml");
 
-        
+// Definir la función de devolución de llamada cuando la solicitud esté completa
+xmlhttp.onreadystatechange = function () {
+  // Verificar si la solicitud se ha completado satisfactoriamente
+  if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+    // Parsear la respuesta XML
+    var xmlDoc = xmlhttp.responseXML;
+
+    // Aquí puedes trabajar con el objeto xmlDoc que contiene la respuesta XML
+    console.log(xmlDoc);
+  }
+};
+
+// Enviar la solicitud
+xmlhttp.send();
+
   

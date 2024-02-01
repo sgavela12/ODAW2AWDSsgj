@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Cuentas</h1>
+    <table border="1px solid">
+        <tr>
+            <th>IBAN</th>
+            <th>Alias</th>
+            <th>Saldo</th>
+            <th>Editar</th>
+            <th>Borrar</th>
+            <th>Movimientos</th>
+        </tr>
+        <tr th:each="cuenta:${listaCuentas}">
+            <td th:text="${cuenta.iban}"></td>
+            <td th:text="${cuenta.nombre}"></td>
+            <td th:text="${cuenta.saldo}"></td>
+            <td><a th:href="@{/editar/{iban}(iban=${cuenta.iban})}">Editar</a></td>
+            <td><a th:href="@{/borrar/{iban}(iban=${cuenta.iban})}">Borrar</a></td>
+            <td><a th:href="@{/movimientos/{iban}(iban=${cuenta.iban})}">Movimientos</a></td>
+        </tr>
+    </table><br>
+    <a th:href="@{/nuevaCuenta}">Nueva Cuenta</a><br>
+    <a th:href="@{/nuevoMovimiento}">Nuevo Movimiento</a>
+</body>
+</html>

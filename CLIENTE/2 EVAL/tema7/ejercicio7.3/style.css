@@ -1,0 +1,15 @@
+img{
+    width: 250px;
+    margin: 20px;
+    height: 170px;
+}
+
+
+
+#juego{
+    display: none;
+}
+
+#restart{
+    display: none;
+}
