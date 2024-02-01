@@ -1,0 +1,23 @@
+<discos>
+  <disco>
+    <id>bdisco1</id>
+    <grupo>grupo</grupo>
+    <anno>1998</anno>
+    <genero>rock</genero>
+    <caratula>caratula</caratula>
+  </disco>
+  <disco>
+    <id>cdisco2</id>
+    <grupo>grupo</grupo>
+    <anno>1998</anno>
+    <genero>rock</genero>
+    <caratula>caratula</caratula>
+  </disco>
+  <disco>
+    <id>adisco3</id>
+    <grupo>grupo</grupo>
+    <anno>1998</anno>
+    <genero>rock</genero>
+    <caratula>caratula</caratula>
+  </disco>
+</discos>

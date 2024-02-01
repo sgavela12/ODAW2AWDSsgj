@@ -178,10 +178,8 @@ xhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
     let responseXML = this.responseXML;
 
-    // Obtener la colección de elementos <picture>
     let pictures = responseXML.getElementsByTagName("picture");
 
-    // Iterar sobre los elementos y mostrar el contenido de <medium>
     for (let i = 0; i < pictures.length; i++) {
       let mediumElement = pictures[i].getElementsByTagName("large")[0];
       botones[i][1]=mediumElement.textContent

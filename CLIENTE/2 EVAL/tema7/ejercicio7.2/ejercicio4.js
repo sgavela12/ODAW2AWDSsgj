@@ -94,29 +94,32 @@ function actulizaNumeroDiscos(){
 }
 
 
-// Crear una instancia de XMLHttpRequest
-var xmlhttp = new XMLHttpRequest();
+document.addEventListener("DOMContentLoaded", cargarDiscos())
 
-// Especificar el método HTTP y la URL de la API
-var url = "https://randomuser.me/api/?results=6&format=XML";
-xmlhttp.open("GET", url, true);
+function cargarDiscos() {
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            cargarXML(this);
+        }
+    };
+    xhr.open("GET", "discos.xml", true);
+    xhr.send();
+        }
 
-// Configurar el tipo de respuesta esperada (en este caso, XML)
-xmlhttp.setRequestHeader("Accept", "application/xml");
+        function cargarXML(xml) {
+            let docXML = xml.responseXML;
+            let discosXML = docXML.getElementsByTagName("disco");
+            for (let i = 0; i < discosXML.length; i++) {
+                discos.push(new Disco(discosXML[i].getElementsByTagName("id")[0].textContent,discosXML[i].getElementsByTagName("grupo")[0].textContent,discosXML[i].getElementsByTagName("anno")[0].textContent,discosXML[i].getElementsByTagName("genero")[0].textContent,discosXML[i].getElementsByTagName("caratula")[0].textContent))
+                console.log(discosXML[i].getElementsByTagName("id")[0].textContent);
+                console.log(discosXML[i].getElementsByTagName("grupo")[0].textContent);
+                console.log(discosXML[i].getElementsByTagName("anno")[0].textContent);
+                console.log(discosXML[i].getElementsByTagName("genero")[0].textContent);
+                console.log(discosXML[i].getElementsByTagName("caratula")[0].textContent);
 
-// Definir la función de devolución de llamada cuando la solicitud esté completa
-xmlhttp.onreadystatechange = function () {
-  // Verificar si la solicitud se ha completado satisfactoriamente
-  if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-    // Parsear la respuesta XML
-    var xmlDoc = xmlhttp.responseXML;
 
-    // Aquí puedes trabajar con el objeto xmlDoc que contiene la respuesta XML
-    console.log(xmlDoc);
-  }
-};
 
-// Enviar la solicitud
-xmlhttp.send();
-
-  
+            }
+            
+        }
