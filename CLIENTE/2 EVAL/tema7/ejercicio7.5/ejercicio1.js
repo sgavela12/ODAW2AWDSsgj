@@ -1,4 +1,5 @@
 const boton = document.getElementById("boton");
+document.addEventListener("DOMContentLoaded",cargaXml)
 
 const tareas = [];
 
@@ -16,7 +17,7 @@ function agregarTarea() {
 
 function tachaCompletada(index) {
   tareas[index].completada = !tareas[index].completada;
-  mostrarTareas();
+  
 }
 
 function mostrarTareas() {
@@ -27,13 +28,20 @@ function mostrarTareas() {
     const li = document.createElement('li');
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
-    checkbox.checked = tarea.completada;
+    if(tarea.estado == "completada"){
+      checkbox.checked = true;
+    }else{
+      checkbox.checked = false
+    }
+  
     checkbox.addEventListener('click', () => tachaCompletada(index)); 
 
     const span = document.createElement('span');
-    span.textContent = tarea.texto;
-    if (tarea.completada) {
-      span.classList.add('completada');
+    span.textContent = tarea.descripcion;
+    if (tarea.estado=="completada") {
+      checkbox.checked=true
+    }else{
+      checkbox.checked = tarea.completada;
     }
 
     li.appendChild(checkbox);
@@ -43,3 +51,33 @@ function mostrarTareas() {
 }
 
 mostrarTareas();
+
+
+
+
+
+function cargaXml() {
+  let xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+          //Al hacer parse nos devuelve un objeto
+          let objeto = JSON.parse(this.responseText);
+
+          //Mostramos los datos
+        cargaTareas(objeto)
+          //Si queremos convertir un objeto Javascript en una cadena
+          let cadena = JSON.stringify(objeto);
+
+      }
+  }
+  xhr.open("GET", "tareas.json", true);
+  xhr.send();
+}
+
+
+function cargaTareas(json){
+  json.forEach((tarea)=>{
+    tareas.push(tarea)
+  })
+  mostrarTareas()
+}
