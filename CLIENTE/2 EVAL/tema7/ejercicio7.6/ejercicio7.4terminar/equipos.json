@@ -1,0 +1,38 @@
+[
+    {
+      "Nombre": "Real Madrid",
+      "PartidosJugados": 20,
+      "PartidosGanados": 15,
+      "PartidosPerdidos": 3,
+      "PartidosEmpatados": 2
+    },
+    {
+      "Nombre": "FC Barcelona",
+      "PartidosJugados": 18,
+      "PartidosGanados": 12,
+      "PartidosPerdidos": 4,
+      "PartidosEmpatados": 2
+    },
+    {
+      "Nombre": "Liverpool FC",
+      "PartidosJugados": 22,
+      "PartidosGanados": 18,
+      "PartidosPerdidos": 2,
+      "PartidosEmpatados": 2
+    },
+    {
+      "Nombre": "Bayern Munich",
+      "PartidosJugados": 21,
+      "PartidosGanados": 17,
+      "PartidosPerdidos": 3,
+      "PartidosEmpatados": 1
+    },
+    {
+      "Nombre": "Juventus",
+      "PartidosJugados": 19,
+      "PartidosGanados": 14,
+      "PartidosPerdidos": 4,
+      "PartidosEmpatados": 1
+    }
+  ]
+  
