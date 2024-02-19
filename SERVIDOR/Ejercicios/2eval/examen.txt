@@ -1,0 +1,3 @@
+hacer una api
+control de excepciones 
+hacer un testing
