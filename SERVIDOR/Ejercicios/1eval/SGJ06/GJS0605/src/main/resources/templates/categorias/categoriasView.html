@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Estilos CSS para el menú de navegación */
+        body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+        }
+        header {
+          background-color: #333;
+          color: #fff;
+          text-align: center;
+          padding: 10px 0;
+        }
+        nav {
+          background-color: #444;
+          text-align: center;
+        }
+        nav ul {
+          list-style: none;
+          padding: 0;
+        }
+        nav li {
+          display: inline;
+          margin-right: 20px;
+        }
+        nav a {
+          text-decoration: none;
+          color: #fff;
+        }
+        .container {
+          max-width: 800px;
+          margin: 20px auto;
+          padding: 20px;
+        }
+      </style>
+</head>
+<body>
+    <header>
+        <h1>Mi Sitio Web</h1>
+      </header>
+      <nav>
+        <ul>
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/quienes-somos">Quiénes Somos</a></li>
+          <li><a href="/productos">Productos</a></li>
+          <li><a href="/categoria">Categoria</a></li>
+          <li><a href="/contacta">Contacta</a></li>
+        </ul>
+      </nav>
+    <table>
+        <tr>
+            <td>Id</td>
+            <td>Nombre</td>
+            <td>Editar</td>
+            <td>Borrar</td>
+        </tr>
+        <tr th:each="categoria:${categorias}">
+            <td th:text="*{categoria.id}"></td>
+            <td th:text="*{categoria.nombre}"></td>
+            <td><a th:href="@{/editarCategoria/{cat}(cat=${categoria.id})}">Editar</a></td>
+            <td><a th:href="@{/borrarCategoria/{cat}(cat=${categoria.id})}">Borrar</a></td>
+        </tr>
+    </table><br>
+    <a th:href="@{/nuevaCategoria}">Nueva Categoria</a><br>
+</body>
+</html>

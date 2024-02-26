@@ -1,0 +1,63 @@
+package com.example.services;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import org.springframework.stereotype.Service;
+
+import com.example.domain.Producto;
+
+
+
+@Service
+public class ProductoServiceIplm implements ProductoService{
+    private ArrayList<Producto> productos = new ArrayList<>();
+
+    public ArrayList<Producto> getListaProductos(){
+        return productos;
+    }
+
+    public void nuevoProducto(Producto producto){
+        productos.add(producto);
+    }
+
+
+    public String obtano(){
+        return Integer.toString(LocalDate.now().getYear());
+    }
+
+    public void borrarProducto(Long id){
+        Iterator<Producto> comprobar = productos.iterator();
+        while(comprobar.hasNext()){
+            Producto producto = comprobar.next();
+            if(producto.getId()==id)comprobar.remove();
+        }
+    }
+
+    public Producto obtenerPorId(Long id){
+        for(Producto p: productos){
+            if(p.getId()==id) return p;
+        }
+        return null;
+    }
+
+    public Producto editar(Producto producto){
+        int posicion = productos.indexOf(producto);
+        System.out.println(posicion);
+        if(posicion==-1) return null;
+        productos.set(posicion,producto);
+        return producto;
+    }
+
+    public ArrayList<Producto> findByCategory(Long categoria) {
+        ArrayList<Producto> resultado = new ArrayList<>();
+        for(Producto p: productos){
+            if(p.getIdCategoria().equals(categoria)) resultado.add(p);
+        }
+        return resultado;
+    }
+
+    
+    
+}

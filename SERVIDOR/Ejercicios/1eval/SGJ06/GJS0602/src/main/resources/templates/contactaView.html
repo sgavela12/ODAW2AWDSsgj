@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacta - Mi Sitio Web</title>
+    <style>
+        /* Estilos CSS para el menú de navegación */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+        nav {
+            background-color: #444;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #fff;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Mi Sitio Web</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/quienes-somos">Quiénes Somos</a></li>
+            <li><a href="/productos">Productos</a></li>
+            <li><a href="/contacta">Contacta</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h2>Contacta</h2>
+        <p>Estamos encantados de escucharte. Por favor, completa el siguiente formulario para ponerte en contacto con nosotros:</p>
+        
+        <form method="post" action="#" th:action="@{/contacta/submit}" th:object="${contacto}" >
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre"  th:field="*{nombre}">
+            <br>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email"  th:field="*{email}">
+            <br>
+
+            <label for="email">Motivo:</label>
+            <select name="motivo" id="motivo" th:field="*{motivo}">
+                <option value="queja">Queja</option>
+                <option value="consulta">Consulta</option>
+                <option value="otros">Otros</option>
+            </select>
+            <br>
+            
+            <label for="mensaje">Mensaje:</label>
+            <textarea id="mensaje" name="mensaje" rows="4" required th:field="*{mensaje}"></textarea>
+            <br>
+            <input type="checkbox" name="condiciones" id="condiciones">
+            <label for="condiciones">Aceptar las condiciones del servicio</label>
+            <br>
+            <input type="submit" value="Enviar">
+            <h3 th:text="${contacto.nombre}"></h3>
+            <h3 th:text="${contacto.email}"></h3>
+            <h3 th:text="${contacto.motivo}"></h3>
+            <h3 th:text="${contacto.mensaje}"></h3>
+        </form>
+    </div>
+</body>
+</html>

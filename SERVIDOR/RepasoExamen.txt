@@ -1,5 +1,0 @@
-Paginacion
-anotaciones domain
-manytoone
-onetomany
-metodos derivados @query

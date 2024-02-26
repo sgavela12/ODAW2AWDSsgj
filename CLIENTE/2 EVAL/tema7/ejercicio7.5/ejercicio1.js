@@ -63,9 +63,7 @@ function cargaXml() {
           //Al hacer parse nos devuelve un objeto
           let objeto = JSON.parse(this.responseText);
 
-          //Mostramos los datos
         cargaTareas(objeto)
-          //Si queremos convertir un objeto Javascript en una cadena
           let cadena = JSON.stringify(objeto);
 
       }
