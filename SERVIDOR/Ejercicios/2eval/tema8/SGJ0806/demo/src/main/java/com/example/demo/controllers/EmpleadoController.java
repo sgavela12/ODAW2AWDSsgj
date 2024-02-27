@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.domain.Empleado;
-import com.example.demo.exception.InvalidEmpleadoIdException;
+
 import com.example.demo.services.EmpleadoService;
 
 import jakarta.validation.Valid;
@@ -32,9 +32,7 @@ public class EmpleadoController {
 
     @GetMapping("/empleado/{id}")
      public ResponseEntity<Empleado> getEmpleado(@PathVariable("id") String id) {
-        if (!id.matches("\\d+")) {
-            throw new InvalidEmpleadoIdException();
-        }
+       
         Long empleadoId = Long.parseLong(id);
         Empleado empleado = empleadoService.obtenerPorId(empleadoId);
         return ResponseEntity.ok().body(empleado);

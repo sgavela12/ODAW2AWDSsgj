@@ -10,4 +10,5 @@ import com.example.demo.domain.Cuenta;
 public interface CuentaRepositorio extends JpaRepository<Cuenta,String>{
     @Query("select c.iban from Cuenta c")
     List<String>getAllIban();
+    Cuenta  findByIban(String iban);
 }

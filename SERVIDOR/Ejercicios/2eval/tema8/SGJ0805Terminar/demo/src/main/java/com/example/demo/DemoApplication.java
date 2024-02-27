@@ -15,13 +15,6 @@ public class DemoApplication {
 	@Autowired
 	BancoServicioImplBD bancoServicio;
 
-	@Bean
-	public CommandLineRunner metodo(){
-		return args ->{
-			bancoServicio.nuevaCuenta(new Cuenta("77778888","Indra",(double)8000,null));
-			bancoServicio.nuevaCuenta(new Cuenta("55555666","Repsol",(double)10000,null));
-		};
-	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);

@@ -1,86 +1,75 @@
 package com.example.demo.controllers;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.example.demo.domain.Cuenta;
 import com.example.demo.domain.IbanElegido;
+import com.example.demo.exception.CuentaNotFoundException;
 import com.example.demo.services.BancoServicioImplBD;
 
-import jakarta.validation.Valid;
-
 @RestController
+@RequestMapping("/api")
 public class BancoController {
-    
+
     @Autowired
     BancoServicioImplBD bancoServicio;
-    
-    @GetMapping({"/","/index","/inicio"})
-    public List<Cuenta> showIndex(){  
-        List<Cuenta = bancoServicio.verCuentas();
-        return "index";
 
-    }
-
-    @GetMapping("/nuevaCuenta")
-    public String showNuevaCuenta(Model model){
-        model.addAttribute("cuenta", new Cuenta());
-        return "crearCuenta";
-    }
-
-    @PostMapping("/nuevaCuenta/submit")
-    public String showSubmitNuevaCuenta(@Valid Cuenta cuenta, BindingResult bindingResult){
-        if(bindingResult.hasErrors()) return "error";
-        bancoServicio.nuevaCuenta(cuenta);
-        return "redirect:/";
-    }
-
-    @GetMapping("/editar/{iban}")
-    public String showEditar(@PathVariable String iban, Model model){
-        Cuenta cuenta = bancoServicio.obtenerPorIban(iban);
-        if(cuenta!=null){
-            model.addAttribute("cuenta", cuenta);
-            return "editarCuenta";
+    @GetMapping("/cuentas")
+    public List<Cuenta> getCuentas() {
+        try {
+            return bancoServicio.verCuentas();
+        } catch (Exception ex) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
         }
-        return "redirect:/";
     }
 
-    @PostMapping("/editarCuenta/submit")
-    public String showEditarSubmit(Cuenta cuenta){
-        bancoServicio.cambiarCuenta(cuenta.getIban());
-        return "redirect:/";
+    @GetMapping("/cuenta/{iban}")
+    public Cuenta getCuentaByIban(@PathVariable String iban) {
+        try {
+            return bancoServicio.obtenerPorIban(iban);
+        } catch (CuentaNotFoundException ex) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
+        }
     }
 
-    @GetMapping("/borrar/{iban}")
-    public String showBorrar(@PathVariable String iban){
-        bancoServicio.borrarCuenta(iban);
-        return "redirect:/";
-    }
-    @GetMapping("/movimientos/{usuario}")
-    public String showMovimientos(@PathVariable String usuario, Model model){
-        model.addAttribute("movimientos", bancoServicio.obtenerMovimientos(usuario));
-        return "verMovimientos";
+    @PostMapping("/cuenta")
+    public Cuenta createCuenta(@RequestBody Cuenta cuenta) {
+        try {
+            return bancoServicio.nuevaCuenta(cuenta);
+        } catch (Exception ex) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getMessage());
+        }
     }
 
-    @GetMapping("/nuevoMovimiento")
-    public String showIbanDisponibles(Model model){
-        model.addAttribute("listaIbanes", bancoServicio.listaIbanes());
-        model.addAttribute("ibanElegido", new IbanElegido());
-        return "elegirIban";
+    @PostMapping("/movimiento")
+    public void hacerMovimiento(@RequestBody IbanElegido ibanElegido) {
+        try {
+            bancoServicio.hacerMovimiento(ibanElegido.getIban(), ibanElegido.getImporte());
+        } catch (Exception ex) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getMessage());
+        }
     }
 
-    @PostMapping("/nuevoMovimiento/submit")
-    public String showMovimiento(@Valid IbanElegido ibanElegido, BindingResult bindingResult){
-        if(bindingResult.hasErrors()) return "errorImporte";
-        bancoServicio.hacerMovimiento(ibanElegido.getIban(), ibanElegido.getImporte());
-        return "redirect:/";
+    @DeleteMapping("/borrar/{iban}")
+    public void deleteElement(@PathVariable String iban) {
+        try {
+            bancoServicio.borrarCuenta(iban);
+            
+        } catch (Exception ex) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getMessage());
+        }
+           
     }
+
 }

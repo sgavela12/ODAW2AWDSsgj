@@ -20,7 +20,6 @@ public class GlobalControllerAdvice extends ResponseEntityExceptionHandler {
             EmpleadoNotFoundException ex, WebRequest request) {
         ExcepcionBody body = new ExcepcionBody(LocalDateTime.now(),
                 HttpStatus.NOT_FOUND, ex.getMessage(),
-
                 ((ServletWebRequest) request).getRequest().getRequestURI());
         return new ResponseEntity<Object>(body, HttpStatus.NOT_FOUND);
     }
@@ -33,19 +32,6 @@ public class GlobalControllerAdvice extends ResponseEntityExceptionHandler {
                 ((ServletWebRequest) request).getRequest().getRequestURI());
         return new ResponseEntity<Object>(body, HttpStatus.NOT_FOUND);
     }
-
-    @ExceptionHandler(InvalidEmpleadoIdException.class)
-    public ResponseEntity<?> handleInvalidEmpleadoId(
-            InvalidEmpleadoIdException ex, WebRequest request) {
-        ExcepcionBody body = new ExcepcionBody(LocalDateTime.now(),
-                HttpStatus.BAD_REQUEST, ex.getMessage(),
-                ((ServletWebRequest) request).getRequest().getRequestURI());
-        return new ResponseEntity<Object>(body, HttpStatus.BAD_REQUEST);
-    }
-
-
-
-
 
 
     @Override
