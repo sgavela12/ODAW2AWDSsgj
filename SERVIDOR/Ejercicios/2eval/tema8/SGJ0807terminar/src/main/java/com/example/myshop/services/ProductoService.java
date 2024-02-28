@@ -16,7 +16,7 @@ public interface ProductoService {
 
     Producto editar(Producto producto);
 
-    void borrar(Long id);
+    Producto borrar(Long id);
     
     public List<Producto> obtenerPorCategoria(Long id);
 

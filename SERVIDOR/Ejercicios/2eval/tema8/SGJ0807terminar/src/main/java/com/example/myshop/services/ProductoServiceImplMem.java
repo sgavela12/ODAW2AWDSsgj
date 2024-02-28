@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.myshop.domain.Categoria;
 import com.example.myshop.domain.Producto;
@@ -35,9 +37,14 @@ public class ProductoServiceImplMem implements ProductoService {
         return productoRepositorio.save(producto);
     }
 
-    public void borrar(Long id) {
+    public Producto borrar(Long id) {
+        Producto producto = obtenerPorId(id);
         productoRepositorio.deleteById(id);
+        return producto;
     }
+
+  
+    
 
     public List<Producto> obtenerPorCategoria(Long idCategoria){
         List<Producto> productosPorCategoria = new ArrayList<>();
