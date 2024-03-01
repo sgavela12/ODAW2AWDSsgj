@@ -1,0 +1,9 @@
+Selección de elementos: jQuery te permite seleccionar elementos del DOM utilizando selectores similares a CSS. Por ejemplo, puedes seleccionar todos los párrafos de una página con $("p").
+
+Manipulación del DOM: Una vez seleccionados los elementos, puedes manipular su contenido, estilo y atributos de manera sencilla. Por ejemplo, puedes cambiar el texto de un elemento con $("p").text("Nuevo texto").
+
+Eventos: jQuery simplifica la adición y gestión de eventos en elementos del DOM. Puedes asignar fácilmente funciones a eventos como clics, cambios, etc. Por ejemplo, puedes hacer algo cuando se hace clic en un botón con $("button").click(function() { //acciones }).
+
+Efectos y animaciones: jQuery proporciona métodos para agregar efectos y animaciones a los elementos del DOM, como desvanecimientos, deslizamientos, etc. Por ejemplo, puedes hacer que un elemento se desvanezca con $("div").fadeOut().
+
+AJAX: Facilita la realización de solicitudes AJAX para cargar contenido dinámicamente sin tener que recargar toda la página. Por ejemplo, puedes cargar datos de un servidor con $.ajax()

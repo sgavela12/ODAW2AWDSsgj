@@ -1,0 +1,19 @@
+.card {
+  color: white;
+  padding: 2em;
+  margin: 2cqmin;
+  background-color:#000000;
+  border-radius: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 128, 0, 0.5); 
+  transition: transform 0.3s ease;
+}
+.card:hover {
+  transform: scale(1.5);
+  background-color:#033215;
+}
+#mensajeError{
+  color: red;
+}
