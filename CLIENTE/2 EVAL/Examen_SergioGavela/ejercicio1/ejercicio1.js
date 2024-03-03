@@ -21,6 +21,7 @@ mostrarUsuarios.addEventListener("click", () => {
     
 })
 
+
 function cargaJson() {
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
