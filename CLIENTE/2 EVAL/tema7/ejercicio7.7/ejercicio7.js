@@ -1,93 +1,105 @@
-document.addEventListener("DOMContentLoaded",cargaXmlFetch)
-let filtro = document.getElementById("filtro")
-let orden = document.getElementById("orden")
-let espacioTabla = document.getElementById("espacioTabla");
+document.addEventListener("DOMContentLoaded", cargaXmlFetch);
 
-let tabla = []
+let filtro = document.getElementById("filtro");
+let orden = document.getElementById("orden");
+let espacioTabla = document.getElementById("espacioTabla");
+let inputNacionalidad = document.getElementById("inputNacionalidad");
+let tabla = [];
+let paginaActual = 1;
+const pilotosPorPagina = 3;
 
 filtro.addEventListener("change", () => {
     ordenarTablaPorCriterio();
-    
 });
 
-orden.addEventListener("change",ordenarTablaPilotos)
+orden.addEventListener("change", ordenarTablaPilotos);
+
+inputNacionalidad.addEventListener("input", filtrarPorNacionalidad);
 
 function cargaXmlFetch(){
     fetch('pilotos.json')
       .then(response => {
-        // La respuesta de la solicitud está disponible aquí
-        // Puedes verificar si la solicitud fue exitosa (código de estado 200-299)
         if (!response.ok) {
           throw new Error('Hubo un problema con la solicitud. Código de estado: ' + response.status);
         }
-    
-        // Parsear la respuesta como JSON
         return response.json();
       })
       .then(data => {
-        mostrarPilotos(data)
-        // Hacer algo con los datos obtenidos
-    
-        
+        mostrarPilotos(data);
       })
       .catch(error => {
-        // Manejar errores de red o del servidor
         console.error('Error en la solicitud:', error);
       });
+}
+
+function mostrarPilotos(json){
+    tabla = json.pilotos;
+    actualizarTabla();
+}
+
+function actualizarTabla(){
+    const inicio = (paginaActual - 1) * pilotosPorPagina;
+    const fin = inicio + pilotosPorPagina;
+    const pilotosPagina = tabla.slice(inicio, fin);
+    espacioTabla.innerHTML = iteraPilotos(pilotosPagina);
+
+    // Actualizar paginación
+    const totalPaginas = Math.ceil(tabla.length / pilotosPorPagina);
+    const paginacionHTML = generarPaginacion(totalPaginas);
+    document.getElementById("paginacion").innerHTML = paginacionHTML;
+}
+
+function iteraPilotos(pilotos){
+    let respuesta = "";
+    pilotos.forEach((piloto) => {
+        respuesta += `<div class="filaPiloto" onclick="destacarPiloto(this)">
+            ${piloto.nombre} ${piloto.equipo} ${piloto.nacionalidad} ${piloto.numero}
+        </div>`;
+    });
+    return respuesta;
+}
+
+function ordenarTablaPilotos() {
+    const order = orden.value;
+    if (order === "ascendente") {
+        tabla.sort((a, b) => a.nombre.localeCompare(b.nombre));
+    } else if (order === "descendente") {
+        tabla.sort((a, b) => b.nombre.localeCompare(a.nombre));
     }
+    actualizarTabla();
+}
 
-
-    function mostrarPilotos(json){
-        
-
-       
-            json.pilotos.forEach((piloto)=>{
-                tabla.push(piloto)
-            })
-
-         
+function ordenarTablaPorCriterio() {
+    const filtroSeleccionado = filtro.value;
+    if (filtroSeleccionado === "nombre") {
+        tabla.sort((a, b) => a.nombre.localeCompare(b.nombre));
+    } else if (filtroSeleccionado === "equipo") {
+        tabla.sort((a, b) => a.equipo.localeCompare(b.equipo));
     }
+    actualizarTabla();
+}
+
+function filtrarPorNacionalidad() {
+    const nacionalidad = inputNacionalidad.value.trim().toLowerCase();
+    const pilotosFiltrados = tabla.filter(piloto => piloto.nacionalidad.toLowerCase() === nacionalidad);
+    actualizarTabla(pilotosFiltrados);
+}
 
 
-    function creaTablaPiloto(){
-        espacioTabla.innerHTML = iteraPilotos()
+function destacarPiloto(elemento){
+    elemento.classList.toggle("pilotoDestacado");
+}
 
+function generarPaginacion(totalPaginas){
+    let paginacionHTML = `<button onclick="cambiarPagina(1)">Primera</button>`;
+    for(let i = 1; i <= totalPaginas; i++){
+        paginacionHTML += `<button onclick="cambiarPagina(${i})">${i}</button>`;
     }
+    paginacionHTML += `<button onclick="cambiarPagina(${totalPaginas})">Última</button>`;
+    return paginacionHTML;
+}
 
-    function iteraPilotos(){
-        let respuesta=""
-        tabla.forEach((piloto)=>{
-            respuesta += `${piloto.nombre} ${piloto.equipo} ${piloto.nacionalidad}${piloto.numero} <br>`
-        })
-        return respuesta
-    }
-
-
-    function ordenarTablaPilotos() {
-        const order = orden.value; // Obtener el valor seleccionado en el elemento <select> con id "orden"
-        
-        if (order === "ascendente") {
-            tabla.sort((a, b) => a.nombre.localeCompare(b.nombre)); // Ordenar el array tabla de forma ascendente según el nombre del piloto
-        } else if (order === "descendente") {
-            tabla.sort((a, b) => b.nombre.localeCompare(a.nombre)); // Ordenar el array tabla de forma descendente según el nombre del piloto
-        }
-        
-        espacioTabla.innerHTML = iteraPilotos();
-    }
-
-
-    function ordenarTablaPorCriterio() {
-        const filtroSeleccionado = filtro.value; // Obtener el valor seleccionado en el elemento <select> con id "filtro"
-    
-        if (filtroSeleccionado === "nombre") {
-            tabla.sort((a, b) => a.nombre.localeCompare(b.nombre)); // Ordenar el array tabla alfabéticamente por el nombre del piloto
-        } else if (filtroSeleccionado === "nacionalidad") {
-            tabla.sort((a, b) => a.nacionalidad.localeCompare(b.nacionalidad)); // Ordenar el array tabla alfabéticamente por la nacionalidad del piloto
-        }
-        
-        // Renderizar la tabla con el nuevo orden según el criterio seleccionado
-        espacioTabla.innerHTML = iteraPilotos();
-    }
-    
-    
-    
+function cambiarPagina(pagina){
+    paginaActual = pagina;
+    actualizarTabla();
+}
